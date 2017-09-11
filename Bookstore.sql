@@ -75,8 +75,44 @@ INSERT INTO Orders (`IdCustomer`,`IdBook`,`OrderDate`, `Status`)
 VALUES
 (2,4,"2017-10-08", "Oczekiwane"),
 (7,1,"2017-09-05", "Wyslano"),
-(9,1,"2017-10-11", "Wyslano");
+(5,3,"2017-09-05", "Wyslano"),
+(9,1,"2017-10-11", "Wyslano"),
+(2,2,"2017-10-08", "Oczekiwane"),
+(6,2,"2017-10-08", "Wysłano"),
+(4,2,"2017-10-08", "Wysłano"),
+(1,2,"2017-10-08", "Oczekiwane");
 
 
+/*
 SELECT*FROM Books;
 SELECT*FROM Orders;
+SELECT*FROM Customers;
+*/
+
+/*
+SELECT * FROM Books ORDER BY Title ASC;
+*/
+
+/*
+SELECT c.customerName, c.customerSurname, o.IdOrder, o.orderDate 
+FROM Orders AS o, Customers AS c
+WHERE o.IdCustomer = c.IdCustomer;
+*/
+
+#2.Wyjmijimię,nazwiskoklientów,którzykiedykolwiekzamówiliksiążkęnr2.Spróbujskorzystaćzaliasów.
+
+SELECT c.customerName, c.CustomerSurname 
+FROM Customers AS c, Orders AS o
+WHERE o.IdBook = 2 AND c.IdCustomer = o.IdCustomer;
+
+
+#3.Jakieksiążki(tytułiautor)zamówiłJanNowak?
+
+SELECT b.AuthorName, b.AuthorSurname, b.Title 
+FROM
+Books AS b, Orders AS o, Customers AS c
+WHERE
+c.CustomerName = "Jan" AND
+c.CustomerSurname = "Nowak" AND
+c.IdCustomer = o.IdCustomer AND
+o.IdBook = b.IdBook;
