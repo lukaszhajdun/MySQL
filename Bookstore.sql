@@ -84,17 +84,6 @@ VALUES
 (3, 1, "2017-11-19", "Wyslano"),
 (9, 2, "2017-12-28", "Oczekiwane");
 
-
-#Jednazklientekksięgarni–AgnieszkaJankowska(id=4)wyszłazamąż.
-#OddzisiajbędziesięnazywaćPsikuta.
-#CieszymysięwrazzniąjejnowymnazwiskiemichcemyumożliwićAgnieszcezmianęjejprofiluipodzieleniesięswoimradosnymnazwiskiem.
-
-USE Bookstore;
-UPDATE Customers SET customerSurname = "Psikuta" WHERE IdCustomer = 4;
-
-#sprawdzenie
-SELECT*FROM Customers WHERE IdCustomer = 4;
-
 /*
 SELECT*FROM Books;
 SELECT*FROM Orders;
@@ -144,5 +133,30 @@ o.OrderDate ASC;
 */
 
 
+USE Bookstore;
 
+#Jednazklientekksięgarni–AgnieszkaJankowska(id=4)wyszłazamąż.
+#OddzisiajbędziesięnazywaćPsikuta.
+#CieszymysięwrazzniąjejnowymnazwiskiemichcemyumożliwićAgnieszcezmianęjejprofiluipodzieleniesięswoimradosnymnazwiskiem.
 
+#UPDATE Customers SET customerSurname = "Psikuta" WHERE IdCustomer = 4;
+#SELECT*FROM Customers WHERE IdCustomer = 4;
+
+#Zwiększamycenęwszystkichksiążeko10%
+#SELECT*FROM Books;
+#UPDATE Books SET Price = ROUND(Price*1.1, 2);
+
+#SELECT*FROM Books ORDER BY Price DESC LIMIT 1;
+
+#UPDATE Books SET price = price - 10 ORDER BY price DESC LIMIT 1;
+
+#SELECT*FROM Books WHERE price = (SELECT MAX(price) FROM Books)
+
+UPDATE Customers SET customerName = "Joanna", customerSurname = "Dostojewska" 
+WHERE IdCustomer = 10;
+SELECT*FROM Customers;
+
+UPDATE Orders SET Status = "Wyslano" WHERE IdOrder = 4 OR IdOrder = 5;
+#to samo co wyzej
+UPDATE Orders SET Status = "Oczekuje" WHERE IdOrder BETWEEN 4 AND 5;
+SELECT*FROM Orders;
