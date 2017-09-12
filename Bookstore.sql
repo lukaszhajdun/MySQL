@@ -160,3 +160,19 @@ UPDATE Orders SET Status = "Wyslano" WHERE IdOrder = 4 OR IdOrder = 5;
 #to samo co wyzej
 UPDATE Orders SET Status = "Oczekuje" WHERE IdOrder BETWEEN 4 AND 5;
 SELECT*FROM Orders;
+
+INSERT INTO Customers (`customerName`,`customerSurname`,`City`)
+VALUES ("Franciszek", "Janowski", "Chorzów");
+
+SELECT*FROM Customers WHERE customerSurname = "Rutkowski";
+SELECT*FROM Books WHERE Title = "HTML5. Tworzenie witryn";
+INSERT INTO Orders (`IdCustomer`,`IdBook`,`OrderDate`, `Status`)
+VALUES
+(7,3,"2017-09-12", "Oczekuje");
+
+INSERT INTO Books (`AuthorName`, `AuthorSurname`, `Title`)
+VALUES
+("","Grębosz", "Symfonia C++");
+
+
+SELECT*FROM Books;
