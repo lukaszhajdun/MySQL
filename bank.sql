@@ -108,4 +108,9 @@ VALUES
 (530,'Julian','Zdziwiony',50,70,150,'1987-03-19',3200.00,200.00);
 
 
+SELECT * FROM Pracownicy;
+SELECT * FROM Stanowiska;
+SELECT * FROM Dzialy;
+SELECT imie, nazwisko, pensja FROM Pracownicy;
+SELECT imie, nazwisko, pensja + dodatki FROM Pracownicy;
 
