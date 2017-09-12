@@ -73,31 +73,43 @@ VALUES
 
 INSERT INTO Orders (`IdCustomer`,`IdBook`,`OrderDate`, `Status`)
 VALUES
-(2,4,"2017-10-08", "Oczekiwane"),
-(7,1,"2017-09-05", "Wyslano"),
-(5,3,"2017-09-05", "Wyslano"),
-(9,1,"2017-10-11", "Wyslano"),
-(2,2,"2017-10-08", "Oczekiwane"),
-(6,2,"2017-10-08", "Wysłano"),
-(4,2,"2017-10-08", "Wysłano"),
-(1,2,"2017-10-08", "Oczekiwane");
+(2, 4, "2017-10-08", "Oczekiwanie"),
+(7, 1, "2017-09-05", "Wyslano"),
+(9, 1, "2017-10-11", "Wyslano"),
+(2, 2, "2017-10-15", "Oczekiwanie"),
+(2, 5, "2017-08-12", "Oczekiwanie"),
+(3, 2, "2017-10-20", "Wyslano"),
+(4, 3, "2017-08-14", "Wyslano"),
+(8, 1, "2017-08-19", "Wyslano"),
+(3, 1, "2017-11-19", "Wyslano"),
+(9, 2, "2017-12-28", "Oczekiwane");
 
+
+#Jednazklientekksięgarni–AgnieszkaJankowska(id=4)wyszłazamąż.
+#OddzisiajbędziesięnazywaćPsikuta.
+#CieszymysięwrazzniąjejnowymnazwiskiemichcemyumożliwićAgnieszcezmianęjejprofiluipodzieleniesięswoimradosnymnazwiskiem.
+
+USE Bookstore;
+UPDATE Customers SET customerSurname = "Psikuta" WHERE IdCustomer = 4;
+
+#sprawdzenie
+SELECT*FROM Customers WHERE IdCustomer = 4;
 
 /*
 SELECT*FROM Books;
 SELECT*FROM Orders;
 SELECT*FROM Customers;
-*/
 
-/*
+
+
 SELECT * FROM Books ORDER BY Title ASC;
-*/
 
-/*
+
+
 SELECT c.customerName, c.customerSurname, o.IdOrder, o.orderDate 
 FROM Orders AS o, Customers AS c
 WHERE o.IdCustomer = c.IdCustomer;
-*/
+
 
 #2.Wyjmijimię,nazwiskoklientów,którzykiedykolwiekzamówiliksiążkęnr2.Spróbujskorzystaćzaliasów.
 
@@ -116,3 +128,21 @@ c.CustomerName = "Jan" AND
 c.CustomerSurname = "Nowak" AND
 c.IdCustomer = o.IdCustomer AND
 o.IdBook = b.IdBook;
+
+#4.PosortujzamówieniadokonaneprzezosobyonazwiskuRutkowskiułożonewgdatyodnajpóźniejdokonanych.
+#Chcemywyświetlić:imięinazwiskoosobyzamawiającej,idzamówienia,datę,statuszamówienia,tytułzamówionejksiążki.
+
+SELECT c.CustomerName, c.CustomerSurname, o.IdOrder, o.OrderDate, o.Status, b.Title 
+FROM
+Customers AS c, Orders AS o, Books AS b
+WHERE
+c.CustomerSurname = "Rutkowski" AND
+c.IdCustomer = o.IdCustomer AND
+o.IdBook = b.IdBook
+ORDER BY
+o.OrderDate ASC;
+*/
+
+
+
+
