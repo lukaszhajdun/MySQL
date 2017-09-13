@@ -2,7 +2,8 @@
 SQLyog Community v8.7 RC
 MySQL - 5.1.52-community : Database - northwind
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -221,3 +222,30 @@ insert  into `suppliers`(`SupplierID`,`CompanyName`,`ContactName`,`ContactTitle`
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+
+#ZAJĘCIA
+
+USE `northwind`;
+SELECT orders.OrderID, customers.ContactName, orders.OrderDate
+FROM orders
+INNER JOIN customers ON orders.CustomerID = customers.CustomerID;
+
+
+SELECT customers.ContactName, orders.OrderID
+FROM customers
+LEFT JOIN orders ON customers.CustomerID = orders.CustomerID
+ORDER BY customers.ContactName;
+
+#experyment
+#Left Join Nie jest naprzemienny
+SELECT customers.ContactName, orders.OrderID
+FROM orders
+LEFT JOIN customers ON customers.CustomerID = orders.CustomerID
+ORDER BY customers.ContactName;
+
+SELECT customers.ContactName, orders.OrderID
+FROM orders
+RIGHT JOIN customers ON customers.CustomerID = orders.CustomerID
+ORDER BY customers.ContactName;
+
