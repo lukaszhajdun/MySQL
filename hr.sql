@@ -2635,3 +2635,40 @@ VALUES (
 	);
     
 COMMIT;
+
+#ZADANIA
+#1
+
+SELECT e.first_name, e.last_name, e.department_id,
+d.department_name
+FROM employees e LEFT JOIN departments d ON e.department_id = d.department_id;
+
+#2
+SELECT e.first_name, e.last_name, d.department_name, l.city, l.state_province
+FROM employees e
+	LEFT JOIN departments d ON d.department_id = e.department_id
+    LEFT JOIN locations l ON d.location_id = l.location_id;
+    
+#4
+SELECT e.first_name, e.last_name, e.department_id, d.department_name
+FROM employees e 
+JOIN departments d ON e.department_id = d.department_id
+WHERE e.department_id = 40 OR e.department_id = 80;
+
+#5
+SELECT e.first_name, e.last_name, d.department_name, l.city, l.state_province
+FROM employees e
+	JOIN departments d ON d.department_id = e.department_id
+    JOIN locations l ON d.location_id = l.location_id
+    WHERE e.first_name LIKE '%z%';
+    
+#6
+SELECT 
+d.department_id, d.department_name, 
+e.first_name, e.last_name, e.salary, e.email, e.phone_number, 
+l.street_address, l.postal_code, l.city, l.state_province
+FROM departments d
+		LEFT JOIN employees e ON e.department_id = d.department_id
+		LEFT JOIN locations l ON d.location_id = l.location_id;
+        
+
