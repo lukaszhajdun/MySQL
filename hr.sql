@@ -2717,3 +2717,4 @@ FROM countries
 	FROM employees
 		GROUP BY department_id HAVING COUNT(department_id) >=2) 
         GROUP BY country_name, city;
+        
