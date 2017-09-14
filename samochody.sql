@@ -86,3 +86,54 @@ INSERT INTO `wypozyczenia` (`idwyp`, `idklienta`, `idauta`, `datawyp`, `datazwro
 (2, 3, 1, '2012-11-01', '2012-11-13', 320),
 (3, 4, 5, '2012-11-12', '2012-11-15', 102),
 (4, 4, 1, '2012-04-15', '2012-04-20', 221);
+
+DROP TABLE IF EXISTS Activity;
+CREATE TABLE Activity (
+`idActivity` int(11) NOT NULL AUTO_INCREMENT,
+`Message` TEXT CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
+PRIMARY KEY (`idActivity`)
+)
+DEFAULT CHARSET = utf8 COLLATE utf8_bin AUTO_INCREMENT=1;
+
+
+#DROP TRIGGER wypozyczSamochod;
+
+
+#DROP TRIGGER zakupAuta;
+
+#Tworzenie triggera poniżej
+delimiter |
+CREATE TRIGGER wypozyczSamochod 
+AFTER INSERT ON wypozyczenia 
+FOR EACH ROW
+ BEGIN
+ INSERT INTO Activity
+ SET Message= (SELECT (CONCAT("Wypozycznono auto ", marka, model)) from auta where Idauta = NEW.Idauta);
+ END
+ 
+ |
+ 
+ INSERT INTO wypozyczenia
+ SET idklienta = 1,
+Idauta = 1,
+ datawyp = "2017-09-14",
+ datazwrotu = "2017-09-15",
+  naleznosc = 111;
+  
+|
+
+CREATE TRIGGER zakupAuta
+AFTER INSERT ON auta
+FOR EACH ROW
+ BEGIN
+ INSERT INTO Activity
+ SET Message= (SELECT (CONCAT("Zakupiono nowe auto ", model, przebieg)));
+ END
+ 
+|
+
+  
+
+
+|
+SELECT*FROM samochody.Activity;
