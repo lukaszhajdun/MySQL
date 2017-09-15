@@ -14,7 +14,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 CREATE TABLE IF NOT EXISTS `auta` (
   `idauta` int(11) NOT NULL AUTO_INCREMENT,
-  `marka` text CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
+  `Marka` text CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
   `model` text CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
   `przebieg` int(11) NOT NULL,
   `rocznik` int(11) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `auta` (
 -- Zrzut danych tabeli `auta`
 --
 
-INSERT INTO `auta` (`idauta`, `marka`, `model`, `przebieg`, `rocznik`, `kolor`, `ubezpieczenie`) VALUES
+INSERT INTO `auta` (`idauta`, `Marka`, `model`, `przebieg`, `rocznik`, `kolor`, `ubezpieczenie`) VALUES
 (1, 'Fiat', 'Punto', 124150, 2007, 'green', 800),
 (2, 'Ford', 'Focus', 250415, 2010, 'yellow', 1528),
 (3, 'Ford', 'Fiesta', 88056, 2011, 'green', 2588),
@@ -127,13 +127,19 @@ AFTER INSERT ON auta
 FOR EACH ROW
  BEGIN
  INSERT INTO Activity
- SET Message= (SELECT (CONCAT("Zakupiono nowe auto ", model, przebieg)));
+ SET Message= (SELECT (CONCAT("Zakupiono auto ", marka, model, kolor)) from auta where Idauta = NEW.Idauta);
  END
  
 |
 
-  
-
+INSERT INTO auta
+SET 
+Marka = 'VW ',
+model = 'golf ',
+		przebieg = 300000,
+		rocznik = 2006,
+		kolor = 'czerwony',
+		ubezpieczenie = 100;
 
 |
 SELECT*FROM samochody.Activity;
