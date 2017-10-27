@@ -1,0 +1,41 @@
+package pl.sda.day04;
+
+public class Palindrome {
+    private String text;
+    private String textLowerCase;
+
+    public Palindrome(String text) {
+        this.text = text;
+        this.textLowerCase = text.toLowerCase();
+    }
+
+    public boolean check() {
+        int len = textLowerCase.length();
+        int len2 = len / 2;
+
+        for (int i = 0; i < len2; i++) {
+            if (textLowerCase.charAt(i) != textLowerCase.charAt(len - i - 1)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return text;
+    }
+
+    public static void main(String[] args) {
+        Palindrome p1 = new Palindrome("Kajak");
+        Palindrome p2 = new Palindrome("kajak");
+        Palindrome p3 = new Palindrome("kobyla ma maly bok");
+        Palindrome p4 = new Palindrome("kobylamamalybok");
+
+        System.out.println(p1 + " : " + p1.check());
+        System.out.println(p2 + " : " + p2.check());
+        System.out.println(p3 + " : " + p3.check());
+        System.out.println(p4 + " : " + p4.check());
+    }
+}

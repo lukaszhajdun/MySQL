@@ -1,0 +1,35 @@
+package day9.zad3;
+
+/**
+ * Created by RENT on 2017-07-07.
+ */
+public class Main {
+    public static void main(String[] args) {
+        Dictionary polEngDict = new Dictionary();
+
+        polEngDict.addWord("Bakłażan", "Eggplant");
+
+        polEngDict.addWord("Pies", "Dog");
+        polEngDict.addWord("Kot", "Cat");
+
+        polEngDict.replaceWord("Kot", "Kitten");
+        polEngDict.replaceWord("Lis", "Fox");
+
+        polEngDict.addWord("Pies", "Hound");
+
+        polEngDict.removeWord("Bakłażan");
+
+        polEngDict.removeTranslation("Kitten");
+        polEngDict.removeTranslation("Car");
+
+
+        polEngDict.printDictionary();
+
+        BetterDictionary betterDictionary = BetterDictionary();
+        betterDictionary.addWord("Kot", "Cat");
+        betterDictionary.addWord("Kot", "Cat");
+        betterDictionary.addWord("Kot", "Cat");
+
+
+    }
+}

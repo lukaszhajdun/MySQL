@@ -1,0 +1,83 @@
+package day12.zad1;
+
+import java.time.*;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Scanner;
+
+/**
+ * Created by RENT on 2017-07-12.
+ */
+public class Main {
+    public static void main(String[] args) {
+//        isFriday13();
+//        printMondays();
+        notimportant();
+    }
+
+    private static void notimportant() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter your date of birth: ");
+        String date = input.nextLine();
+        System.out.print("Enter a time unit [m,d,h]: ");
+        String unit = input.nextLine();
+        System.out.printf("Enter amount of %s: ", unit);
+        int amount = input.nextInt();
+
+        int hours;
+        switch (unit) {
+            case "h":
+                hours = amount;
+                break;
+            case "d":
+                hours = amount * 24;
+                break;
+            case "m":
+                hours = Duration.between(now, LocalDateTime.now().plusMonths(amount)).toHours();
+//                hours = Period.ofMonths(amount).getDays() * 24;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+        LocalDate dayOfBirth = LocalDate.parse(date);
+        LocalDateTime dateOfBirth = LocalDateTime.of(dayOfBirth, LocalTime.NOON);
+        long life = Duration.between(dateOfBirth, LocalDateTime.now()).toHours();
+
+        double percent = Double.valueOf(hours) / Double.valueOf(life) * 100;
+
+        System.out.printf("It's only %.2f%% of your life", percent);
+
+    }
+
+    private static void isFriday13() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a date as such yyyy-MM-dd: ");
+        String date = input.nextLine();
+        LocalDate localDate = LocalDate.parse(date);
+
+        if (localDate.getDayOfMonth() == 13
+                && localDate.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
+            System.out.println("You're in bad luck");
+        } else {
+            System.out.println("You're lucky");
+        }
+
+    }
+
+    public static void printMondays() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a year: ");
+        int year = input.nextInt();
+
+        LocalDate current = LocalDate.ofYearDay(year, 1).minusDays(1);
+
+        current = current.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+        while (current.getYear() <= year) {
+            System.out.println(current);
+            current = current.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+        }
+
+
+    }
+
+
+}

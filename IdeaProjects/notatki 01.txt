@@ -1,0 +1,48 @@
+WARUNEK
+
+if (warunek {
+instrukcje;
+}
+if (i>0){
+return 1 /i;
+} else {
+return 0;
+}
+
+Przyk³ad:
+
+if (n>0){
+return n*3;
+} else if (n>0) {
+return 1;
+} else
+return -1;
+}
+PÊTLE
+
+PÊTLA WHILE
+
+while (warunek) {
+instrukcje;
+}
+while (true) {
+//pêtla nieskoñczona}
+}
+
+int i=10
+while (i>0) {send message}
+
+PÊTLA FOR
+
+for (int i=0; i<100; i++) {
+instrukcje;
+}
+Wykonanep przed pierwsz¹ iteracj¹
+warunek przerwania, rozpoczêcia
+wykonywanie po iteracj¹
+
+
+PÊTLA FOR EACH
+for (String x:ListaNazwisk) {
+instrukcje;
+} 

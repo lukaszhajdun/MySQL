@@ -1,0 +1,95 @@
+package day13;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+/**
+ * Created by sp0rk on 11/07/17.
+ */
+public class WordCounter {
+
+    public static String readFile(String name) throws IOException {
+        Scanner input = null;
+        String content = "";
+        try {
+            Path path = Paths.get(name);
+            input = new Scanner(path);
+
+            long start = System.currentTimeMillis();
+            while (input.hasNextLine()) {
+                content = content + input.nextLine();
+            }
+            long stop = System.currentTimeMillis();
+            System.out.println("reading file: " + (stop - start));
+        } finally {
+            if (input != null) {
+                input.close();
+            }
+
+
+        }
+
+        return content;
+
+    }
+//    public static void writeMapToFile(TreeMap<String, Integer>, String name) throws IOException {
+//        PrintWriter output = null;
+//        try {
+//            File file = new File(name);
+//
+//            if (!file.exists()) {
+//                file.createNewFile();
+//            }
+//
+//            output = new PrintWriter(file);
+//
+//            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+//                output.printf("the word \"%s\" occurs %d times", entry.getKey(), entry.getValue());
+//            }
+////        } finally {
+////            if (output != null;) {
+////
+////            }
+////        }
+//        }
+//
+//    }
+
+    public static TreeMap<String, Integer> countWords(String text) {
+        TreeMap<String, Integer> counter = new TreeMap<>();
+
+        String noWhitespace = text.trim();
+        String noSpecialChars = noWhitespace.replaceAll("[<>\\n.\"*,/():;_\\-+!?\\\\]", " ");
+        String noDoubleSpaces = noSpecialChars.replaceAll("\\s+", " ");
+        String lowerCase = noDoubleSpaces.toLowerCase();
+        String[] words = lowerCase.split(" ");
+
+        long start2 = System.currentTimeMillis();
+        for (String word : words) {
+            if (counter.containsKey(word)) {
+                int occurrences = counter.get(word);
+                counter.put(word, occurrences + 1);
+            } else {
+                counter.put(word, 1);
+            }
+        }
+        long stop2 = System.currentTimeMillis();
+        System.out.println("reading file2: " + (stop2 - start2));
+        return counter;
+    }
+
+    public static void main(String[] args) {
+        try {
+            String text = readFile("text.txt");
+            TreeMap<String, Integer> wordMap = countWords(text);
+            System.out.println(wordMap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}

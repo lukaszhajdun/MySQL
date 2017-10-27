@@ -1,0 +1,37 @@
+package day11.zad1;
+
+import java.util.HashMap;
+
+/**
+ * Created by RENT on 2017-07-11.
+ */
+public class WordCounter {
+
+    public static HashMap<String, Integer> countWords(String text) {
+        HashMap<String, Integer> counter = new HashMap<>();
+
+        String noWhitespaces = text.trim();
+        String noSpecialChars = noWhitespaces.replaceAll("[.,/():;_\\-+?!&\\\\@]", " ");
+        String noDoubleSpaces = noSpecialChars.replaceAll("\\s+", " ");
+        String lowerCase = noDoubleSpaces.toLowerCase();
+        String[] words = lowerCase.split(" ");
+
+//        System.out.println(Arrays.toString(words));
+
+        for (String word : words) {
+            if (counter.containsKey(word)) {
+                int occurrences = counter.get(word);
+                counter.put(word, occurrences + 1);
+            } else {
+                counter.put(word, 1);
+            }
+        }
+
+        return counter;
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(countWords(" \n    ab.cd a,b-s+d_f;d:AA@ssf-d?d?d))) a/dd?wfs\nEWEQg asa\\wsfEWE!sfsa&fg gd(ssha)d "));
+    }
+}
